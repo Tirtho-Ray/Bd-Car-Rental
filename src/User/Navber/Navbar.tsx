@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { FaBars, FaCartPlus, FaTimes } from 'react-icons/fa';
+import { FaBars, FaCartPlus, FaTimes, FaUser } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 
@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
             gsap.to(menuRef.current, { x: '-100%', duration: 0.5, ease: 'power3.inOut' });
         }
     };
-    console.log('Menu isOpen:', isOpen);
+    // console.log('Menu isOpen:', isOpen);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
 
     const navLinkStyles = (path: string): string => {
         const isActive = location.pathname === path;
-        return `hover:text-black transition-colors duration-300 ${isActive ? 'text-black' : ''}`;
+        return `hover:text-black transition-colors duration-300  ${isActive ? 'text-black' : ''}`;
     };
 
     return (
@@ -102,7 +102,7 @@ const Navbar: React.FC = () => {
                 <Link to="/">Logo</Link>
             </div>
             <div className="md:flex hidden space-x-6">
-                <Link to="/" className={navLinkStyles('/')}>Home</Link>
+                <Link to="/" className={navLinkStyles('/')}><p className='font-serif'>Home</p></Link>
                 <Link to="/all-cars" className={navLinkStyles('/vehicles')}>Vehicles</Link>
                 <Link to="/go-bd" className={navLinkStyles('/go-bd')}>Go BD</Link>
                 <Link to="/explore-bd" className={navLinkStyles('/explore-bd')}>Explore BD</Link>
@@ -125,8 +125,9 @@ const Navbar: React.FC = () => {
 
                         <p className='bg-blue-600 py-16 px-6 '></p>
             </div>
-            <div>
+            <div className='flex items-center gap-3 text-sm'>
                 <FaCartPlus />
+                <Link to='/sign-in'><FaUser /></Link>
             </div>
         </nav>
     );

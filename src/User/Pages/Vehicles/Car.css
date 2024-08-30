@@ -1,0 +1,30 @@
+/* Car.css */
+.car-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .car-image {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .car-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(34, 34, 34, 0); /* #222 color with initial transparency */
+    transition: background-color 0.5s ease-in-out;
+    pointer-events: none; /* To ensure only the image triggers hover */
+  }
+  
+  .car-image-container:hover .car-image {
+    transform: scale(1.1);
+  }
+  
+  .car-image-container:hover .car-overlay {
+    background-color: rgba(34, 34, 34, 0.5); /* Dark overlay on hover */
+  }
+  
+  /* Add styles for the modal component */
