@@ -9,35 +9,34 @@ import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 
 const router = createBrowserRouter([
-    // user content
-    {
-        path: '/',
-        errorElement:<Loader />,
-        element:<Main />,
-        children:[
-            {
-                path:'/',
-                element:<Home />
-            },
-            {
-                path:'/about',
-                element:<About />
-            },
-            {
-                path:'/all-cars',
-                element:<VehiclesMainPage />
-            },
-            {
-                path:'/sign-up',
-                element:<Register />
-            },
-            {
-                path:'/sign-in',
-                element:<Login />
-            },
-        ]  
-    }
-
-])
+  // user content
+  {
+    path: "/",
+    errorElement: <Loader />,
+    element: <Main />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/all-cars",
+        element: <VehiclesMainPage />,
+      },
+      {
+        path: "/sign-up",
+        element: <Register />,
+      },
+      {
+        path: "/sign-in",
+        element: <Login />,
+      },
+    ],
+  },
+]);
 
 export default router;

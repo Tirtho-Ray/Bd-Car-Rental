@@ -47,7 +47,7 @@ const Register: React.FC = () => {
 
         try {
             await signUp(formData).unwrap();
-            navigate('/');
+            navigate('/sign-in'); 
         } catch (err) {
             console.error('Registration failed:', err);
             const errorMessage = err?.data?.message || 'Registration failed. Please try again.';
@@ -57,6 +57,8 @@ const Register: React.FC = () => {
             }));
         }
     };
+
+
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-200 p-4">

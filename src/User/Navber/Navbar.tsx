@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaBars, FaCartPlus, FaTimes, FaUser } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../Redux/Fetures/loginSlice';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -9,6 +11,7 @@ const Navbar: React.FC = () => {
     const menuRef = useRef<HTMLDivElement>(null);
     const navbarRef = useRef<HTMLElement>(null);
     const location = useLocation();
+    const navigate = useNavigate()
 
     
 
@@ -86,6 +89,14 @@ const Navbar: React.FC = () => {
         return `hover:text-black transition-colors duration-300  ${isActive ? 'text-black' : ''}`;
     };
 
+    const dispatch = useDispatch();
+
+    const handelLogout = () => {
+        dispatch(logout());
+        navigate('/')
+       
+    };
+
     return (
         <nav
             ref={navbarRef}
@@ -105,8 +116,11 @@ const Navbar: React.FC = () => {
                 <Link to="/" className={navLinkStyles('/')}><p className='font-serif'>Home</p></Link>
                 <Link to="/all-cars" className={navLinkStyles('/vehicles')}>Vehicles</Link>
                 <Link to="/go-bd" className={navLinkStyles('/go-bd')}>Go BD</Link>
-                <Link to="/explore-bd" className={navLinkStyles('/explore-bd')}>Explore BD</Link>
+                {/* <Link to="/logout" className={navLinkStyles('/logout')}>logout</Link> */}
                 <Link to="/about" className={navLinkStyles('/about')}>About Us</Link>
+                <div>
+                    <button onClick={handelLogout}>Logout</button>
+                </div>
             </div>
 
             {/* for small devices */}
