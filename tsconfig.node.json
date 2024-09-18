@@ -5,9 +5,13 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    /* Module resolution and interoperability */
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* Bundler and isolation */
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,

@@ -1,50 +1,43 @@
 import React, { useState, FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useLoginMutation } from '../Redux/Api/Auth/authApi';
 import { useDispatch } from 'react-redux';
 import { setUser, TUser } from '../Redux/Fetures/loginSlice';
 import { verifyToken } from '../utils/verifyToke';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 const Login: React.FC = () => {
-
     const dispatch = useDispatch();
-    const [email, setEmail] = useState<string>('john.doe@example5.com');
-    const [password, setPassword] = useState<string>('securepassword123');
+    const [email, setEmail] = useState<string>('example3@gmail.com');
+    const [password, setPassword] = useState<string>('1234');
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const [login, {error}] = useLoginMutation();
+    const [login, { error }] = useLoginMutation();
 
-    // const handleLogin = async () => {
-    //     await login({variables: {email, password}});
-    // }
+    // Capture the initial route
+    const from = location.state?.from?.pathname || '/';
 
-    // const handleSubmit =async (e: FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //    const userinfo ={
-    //     email,
-    //     password
-    //    };
-    //    console.log(userinfo)
-    //    const res = await login( userinfo).unwrap();
-    //    dispatch(setUser({user :{},token: res.data.token}))
-    //    console.log(res)
-    // };
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const userinfo = { email, password };
-    
+
         try {
             const res = await login(userinfo).unwrap();
-            console.log('Login response:', res);  // Check the entire response here
-    
             const token = res.token;
-            const user = verifyToken(res.token) as TUser;
-            console.log(user)
-    
+
             if (token) {
-                dispatch(setUser({ user: user, token }));
-                navigate('/')
-             
+                // Store only the token in local storage
+                localStorage.setItem('token', token);
+
+                // Extract user data from token
+                const user = verifyToken(token) as TUser;
+
+                // Dispatch the setUser action with user data
+                dispatch(setUser({ user, token }));
+
+                // Redirect to the route they came from or default to home
+                navigate(from, { replace: true });
             } else {
                 console.error('Token not found in response');
             }
@@ -52,8 +45,11 @@ const Login: React.FC = () => {
             console.error('Login error:', error);
         }
     };
-    
-    
+
+    // Type guard to check if the error is a FetchBaseQueryError
+    const isFetchBaseQueryError = (error: unknown): error is FetchBaseQueryError => {
+        return (error as FetchBaseQueryError).status !== undefined;
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -84,11 +80,11 @@ const Login: React.FC = () => {
                             required 
                         />
                     </div>
-                    {error && error?.status === 500 && (
-                    <div className="mb-4 text-center text-red-600">
-                        {error?.data?.message || "An unexpected error occurred. Please try again."}
-                    </div>
-                )}
+                    {error && isFetchBaseQueryError(error) && error.status === 500 && (
+                        <div className="mb-4 text-center text-red-600">
+                            {(error.data as { message?: string })?.message || "An unexpected error occurred. Please try again."}
+                        </div>
+                    )}
                     <button 
                         type="submit" 
                         className="w-full bg-indigo-600 text-white py-3 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -96,7 +92,6 @@ const Login: React.FC = () => {
                         Sign In
                     </button>
                 </form>
-                
 
                 <div className="mt-4 text-center text-sm">
                     <Link to="/forgot-password" className="text-indigo-600 hover:text-indigo-800">Forgot Password?</Link>

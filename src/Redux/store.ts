@@ -1,5 +1,6 @@
 import registerReducer from './Fetures/registerSlice'
 import loginReducer from './Fetures/loginSlice'
+import userReducer from './Fetures/userSlice'
 import { baseApi } from './Api/baseApi'
 import { configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
@@ -26,7 +27,8 @@ export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     register: registerReducer,
-    login:  persistedReducer
+    login:  persistedReducer,
+    user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -5,7 +5,7 @@ import { useSignUpMutation } from '../Redux/Api/Auth/authApi';
 
 const Register: React.FC = () => {
     const navigate = useNavigate();
-    const [signUp, { isLoading, error }] = useSignUpMutation();
+    const [signUp, { isLoading }] = useSignUpMutation();
 
     const [isTermsChecked, setIsTermsChecked] = useState<boolean>(false);
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
