@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# Car rental service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ Car rental service website dedicated to providing all the necessary and fun items for camping enthusiasts. The website features a user-friendly interface and a wide range of functionalities to enhance the shopping experience.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Homepage:** Includes a hero section, best selling/recommended products, categories, featured products, unique sections, FAQ, and footer.
+- **Products Page:** Display all products with searching, filtering, and sorting options.
+- **Product Details Page:** Detailed information about each product with an option to add to cart.
+- **Cart Page:** Manage products in the cart with dynamic pricing updates.
+- **Checkout Page:** Collect user details and provide payment options.
+- **About Us Page:** Contact information, mission statement, team members, and more.
+- **Responsive Design:** Fully optimized for all devices.
+- **State Management:** Utilizes Redux for scalable state management.
+- **Fast Loading Times:** Optimized for performance.
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Frontend:** React, Redux, Tailwind CSS, Framer Motion
+- **Backend:** Node.js, Express, MongoDB (for product management)
+- **Payment:** Stripe (optional)
+- **Hosting:** Vercel
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Getting Started
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerequisites
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Make sure you have the following installed on your local development environment:
+
+- [Node.js](https://nodejs.org/) (v14 or later)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+- MongoDB instance (local or cloud-based like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas))
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clon https://github.com/Tirtho-Ray/Bd-Car-Rental
+
+   cd Bd-Car-Rental
+
+   npm install
+
+   npm run dev
+
+   live link:(https://bd-car-rental-reservation-system-client.vercel.app/)
+   ```
+   - [Live LInk:](https://bd-car-rental-reservation-system-client.vercel.app/)
+   
