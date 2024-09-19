@@ -130,7 +130,9 @@ const Navbar: React.FC = () => {
       </div>
 
       <div className="text-lg font-bold ml-auto md:ml-0">
-        <Link to="/">Logo</Link>
+        <Link to="/">
+        R E N E X
+        </Link>
       </div>
       <div className="md:flex hidden space-x-6">
         <Link to="/" className={navLinkStyles("/")}>

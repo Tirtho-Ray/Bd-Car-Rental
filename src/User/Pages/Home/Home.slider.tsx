@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MdOutlineArrowOutward } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const images = [
     'https://webredox.net/demo/wp/renax/wp-content/uploads/2024/04/3.jpg',
@@ -67,7 +68,9 @@ const HomeSlide: React.FC = () => {
                         <span className='flex items-center gap-2'> <span> View Details</span> <span><MdOutlineArrowOutward /></span></span>
                             </button>                   
                         <button className="md:px-6 md:py-4 px-3 py-2 border rounded-full  transition-transform duration-300 ease-in-out transform hover:translate-y-[-3px] hover:bg-yellow-400 ">
+                          <Link to="/all-cars">
                           <span className='flex items-center gap-2'> <span> Rant Now</span> <span><MdOutlineArrowOutward /></span></span>
+                          </Link>
                             </button>                   
                       
                 </motion.div>

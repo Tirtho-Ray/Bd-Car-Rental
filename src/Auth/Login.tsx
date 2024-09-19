@@ -8,8 +8,8 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState<string>('example3@gmail.com');
-    const [password, setPassword] = useState<string>('1234');
+    const [email, setEmail] = useState<string>();
+    const [password, setPassword] = useState<string>();
     const navigate = useNavigate();
     const location = useLocation();
 
